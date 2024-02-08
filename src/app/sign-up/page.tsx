@@ -22,6 +22,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
   type CarouselApi,
 } from "@/components/ui/carousel";
 import Image from "next/image";
@@ -227,6 +229,8 @@ export default function SignUp() {
                 </CarouselItem>
               ))}
             </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
           </Carousel>
           <div className="py-2 text-center text-[#395886]">
             {current == 1 ? (
