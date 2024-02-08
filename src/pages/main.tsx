@@ -6,10 +6,21 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import Radio from "@/components/Radio";
 
+import { useForm } from "react-hook-form";
+import Link from "next/link";
+
 const Main = () => {
-  const [selected, setSelected] = React.useState("");
+  const [ans1, setAns1] = React.useState<string>("");
+  const [ans2, setAns2] = React.useState<string>("");
+  const [ans3, setAns3] = React.useState<string[]>([]);
+  const [ans4, setAns4] = React.useState<string>("");
   const [currentQues, setCurrentQues] = React.useState(0);
 
+  const form = useForm({
+    defaultValues: {
+      tech_stacks: [],
+    },
+  });
   const days = [
     { id: 1, name: "Monday" },
     { id: 2, name: "Tuesday" },
@@ -19,6 +30,8 @@ const Main = () => {
     { id: 6, name: "Saturday" },
     { id: 7, name: "Sunday" },
   ];
+
+  console.log(ans1, ans2, ans3, ans4);
   return (
     <div
       className="flex flex-col justify-center items-center h-screen text-[#395886]"
@@ -33,8 +46,7 @@ const Main = () => {
           <h1 className="text-2xl mt-8 font-bold">What’s your Hustle?</h1>
           <Dropwdown
             onChange={(item) => {
-              console.log("onChange");
-              setSelected(item);
+              setAns1(item);
             }}
           />
         </>
@@ -44,26 +56,34 @@ const Main = () => {
           <h1 className="text-2xl text-center mt-8 font-bold">
             When’s your moment to break free?
           </h1>
-          <input type="time" className="text-2xl mt-8 font-bold" />
+          <input
+            type="time"
+            className="text-2xl mt-8 font-bold"
+            value={ans2}
+            onChange={(e) => setAns2(e.target.value)}
+          />
         </>
       )}
       {currentQues === 2 && (
         <>
           <h1 className="text-2xl text-center mt-8 font-bold">Days off?</h1>
-
-          {days.map((day, index) => (
-            <Button
-              className="flex items-center space-x-2 w-44 mt-6 bg-[#395886]"
-              key={index}
-            >
-              <Checkbox id={day.name} />
-              <label
-                htmlFor={day.name}
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                {day.name}
-              </label>
-            </Button>
+          {days.map((item, index) => (
+            <div key={item.id + index}>
+              <div className="flex flex-row items-start space-x-3 space-y-0">
+                <Checkbox
+                  id={item.name}
+                  checked={(day: string) => ans3.includes(day)}
+                  onCheckedChange={(checked: any) => {
+                    return checked
+                      ? setAns3([...ans3, item.name])
+                      : ans3.filter((value) => value !== item.name);
+                  }}
+                />
+                <label htmlFor={item.name} className="font-normal">
+                  {item.name}
+                </label>
+              </div>
+            </div>
           ))}
         </>
       )}
@@ -73,7 +93,12 @@ const Main = () => {
             What’s your Hustle?
           </h1>
           <div className="w-54">
-            <Radio />
+            <Radio
+              onChange={(item) => {
+                console.log(item);
+                setAns4(item);
+              }}
+            />
           </div>
         </>
       )}
@@ -97,6 +122,13 @@ const Main = () => {
           >
             Next
           </Button>
+        )}
+        {currentQues === 3 && (
+          <Link href="/mainApp">
+            <Button className="mt-4 bg-[#395886] text-white px-4 py-2">
+              Generate Schedule
+            </Button>
+          </Link>
         )}
       </div>
     </div>

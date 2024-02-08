@@ -1,35 +1,33 @@
+"use client";
 import { useState } from "react";
 import { RadioGroup } from "@headlessui/react";
+import { useEffect } from "react";
 
 const plans = [
   {
-    name: "Startup",
-    ram: "12GB",
-    cpus: "6 CPUs",
-    disk: "160 GB SSD disk",
+    name: "Sedentary",
   },
   {
-    name: "Business",
-    ram: "16GB",
-    cpus: "8 CPUs",
-    disk: "512 GB SSD disk",
+    name: "Lightly Active",
   },
   {
-    name: "Enterprise",
-    ram: "32GB",
-    cpus: "12 CPUs",
-    disk: "1024 GB SSD disk",
+    name: "Moderately Active",
   },
   {
-    name: "Enterprise",
-    ram: "32GB",
-    cpus: "12 CPUs",
-    disk: "1024 GB SSD disk",
+    name: "Highly Active",
   },
 ];
 
-export default function Radio() {
+export default function Radio({
+  onChange,
+}: {
+  onChange: (value: any) => void;
+}) {
   const [selected, setSelected] = useState(plans[0]);
+
+  useEffect(() => {
+    onChange(selected);
+  }, [selected]);
 
   return (
     <div className="w-full px-4 py-16">
@@ -64,18 +62,6 @@ export default function Radio() {
                           >
                             {plan.name}
                           </RadioGroup.Label>
-                          <RadioGroup.Description
-                            as="span"
-                            className={`inline ${
-                              checked ? "text-sky-100" : "text-gray-500"
-                            }`}
-                          >
-                            <span>
-                              {plan.ram}/{plan.cpus}
-                            </span>{" "}
-                            <span aria-hidden="true">&middot;</span>{" "}
-                            <span>{plan.disk}</span>
-                          </RadioGroup.Description>
                         </div>
                       </div>
                       {checked && (
