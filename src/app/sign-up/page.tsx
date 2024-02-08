@@ -17,17 +17,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import * as React from "react";
 import Link from "next/link";
+
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { signup } from "@/actions/auth";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { ReloadIcon } from "@radix-ui/react-icons";
-
+import { useForm } from "react-hook-form";
 const formSchema = z.object({
   email: z.string().min(2, {
     message: "Email must be at least 2 characters.",
@@ -40,7 +41,7 @@ const formSchema = z.object({
   }),
 });
 
-export default function page() {
+export default function SignUp() {
   const router = useRouter();
   const { toast } = useToast();
 
