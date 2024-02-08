@@ -1,7 +1,6 @@
 "use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { User } from "@/db/schema";
-import { getUser } from "@/actions/auth";
 import Image from "next/image";
 import DemoApp from "@/components/Calender";
 import Popup from "@/components/Popup";
@@ -40,9 +39,10 @@ const eventDetails = [
 ];
 
 const page = () => {
-  const userDetails: User | unknown = JSON.parse(
-    window.localStorage.getItem("user") || "{}"
-  );
+  const userDetails: User =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("user") || "{}")
+      : {};
   return (
     <div>
       <div className="flex justify-between mt-7 items-center mr-4">
