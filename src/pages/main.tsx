@@ -3,10 +3,21 @@ import React from "react";
 import Image from "next/image";
 import Dropwdown from "@/components/Dropdown";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const Main = () => {
   const [selected, setSelected] = React.useState("");
   const [currentQues, setCurrentQues] = React.useState(0);
+
+  const days = [
+    { id: 1, name: "Monday" },
+    { id: 2, name: "Tuesday" },
+    { id: 3, name: "Wednesday" },
+    { id: 4, name: "Thursday" },
+    { id: 5, name: "Friday" },
+    { id: 6, name: "Saturday" },
+    { id: 7, name: "Sunday" },
+  ];
   return (
     <div
       className="flex flex-col justify-center items-center h-screen text-[#395886]"
@@ -38,6 +49,21 @@ const Main = () => {
       {currentQues === 2 && (
         <>
           <h1 className="text-2xl text-center mt-8 font-bold">Days off?</h1>
+
+          {days.map((day, index) => (
+            <Button
+              className="flex items-center space-x-2 w-44 mt-6 bg-[#395886]"
+              key={index}
+            >
+              <Checkbox id={day.name} />
+              <label
+                htmlFor={day.name}
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                {day.name}
+              </label>
+            </Button>
+          ))}
         </>
       )}
       {currentQues === 3 && (
