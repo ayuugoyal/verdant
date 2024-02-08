@@ -35,6 +35,7 @@ import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
+import Link from "next/link";
 
 const formSchema = z.object({
   email: z.string().min(2, {
@@ -107,9 +108,15 @@ export default function SignUp() {
       {current == 4 ? (
         <div className="flex justify-center w-full items-center min-h-screen">
           <div>
-            <Card className="w-[350px]">
+            <Card className="w-[350px] text-[#395886] bg-[#F0F3FA]">
+              <div className="pl-44">
+                <div className="ellipse" />
+                <div className="ml-24">
+                  <div className="ellipse-2" />
+                </div>
+              </div>
               <CardHeader>
-                <CardTitle className="text-[#395886]">Create Account</CardTitle>
+                <CardTitle>Create Account</CardTitle>
               </CardHeader>
               <CardContent>
                 <Form {...form}>
@@ -124,7 +131,11 @@ export default function SignUp() {
                         <FormItem>
                           <FormLabel>Email</FormLabel>
                           <FormControl>
-                            <Input placeholder="Email" {...field} />
+                            <Input
+                              placeholder="Email"
+                              {...field}
+                              className="bg-[#F0F3FA]"
+                            />
                           </FormControl>
                           <FormDescription>Enter your email.</FormDescription>
                           <FormMessage />
@@ -139,7 +150,11 @@ export default function SignUp() {
                         <FormItem>
                           <FormLabel>Password</FormLabel>
                           <FormControl>
-                            <Input placeholder="Password" {...field} />
+                            <Input
+                              placeholder="Password"
+                              {...field}
+                              className="bg-[#F0F3FA]"
+                            />
                           </FormControl>
                           <FormDescription>
                             Enter your password.
@@ -156,21 +171,37 @@ export default function SignUp() {
                         <FormItem>
                           <FormLabel>Name</FormLabel>
                           <FormControl>
-                            <Input placeholder="Name" {...field} />
+                            <Input
+                              placeholder="Name"
+                              {...field}
+                              className="bg-[#F0F3FA]"
+                            />
                           </FormControl>
                           <FormDescription>Enter your Name.</FormDescription>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
-                    {load ? (
-                      <Button disabled>
-                        <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
-                        Please wait
-                      </Button>
-                    ) : (
-                      <Button type="submit">Sign Up</Button>
-                    )}
+                    <div className="flex justify-between">
+                      {load ? (
+                        <Button disabled className="w-36">
+                          <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                          Please wait
+                        </Button>
+                      ) : (
+                        <Button
+                          type="submit"
+                          className="w-36 bg-[#395886] hover:shadow-xl hover:bg-[#395886]"
+                        >
+                          Sign Up
+                        </Button>
+                      )}
+                      <Link href="/sign-in">
+                        <Button className="bg-[#D5DEEF] w-36 text-[#395886] hover:text-white hover:bg-[#395886]">
+                          Log In
+                        </Button>
+                      </Link>
+                    </div>
                   </form>
                 </Form>
               </CardContent>
@@ -179,12 +210,12 @@ export default function SignUp() {
         </div>
       ) : (
         <div className="flex flex-col justify-center items-center h-screen">
-          <Carousel setApi={setApi} className="w-full max-w-xs">
+          <Carousel setApi={setApi} className="w-full max-w-xs bg-[#F0F3FA]">
             <CarouselContent>
               {Array.from({ length: 4 }).map((_, index) => (
                 <CarouselItem key={index}>
                   <Card>
-                    <CardContent className="flex aspect-square items-center justify-center p-6">
+                    <CardContent className="flex aspect-square items-center justify-center p-6 bg-[#F0F3FA]">
                       <Image
                         src={`/${index + 1}.png`}
                         alt={`Slide ${index + 1}`}

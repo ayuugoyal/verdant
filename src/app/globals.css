@@ -74,3 +74,30 @@
     @apply bg-background text-foreground;
   }
 }
+
+.ellipse {
+  background-color: #8aaee080;
+  border-radius: 96px/94.5px;
+  box-shadow: 0px 4px 4px #00000040;
+  height: 189px;
+  position: absolute;
+  top: 0;
+  width: 175px;
+}
+
+.ellipse-2 {
+  background-color: #8aaee080;
+  /* border-radius: 82.5px/76.5px; */
+      border-top-left-radius: 110px;
+        border-bottom-left-radius: 110px;
+  box-shadow: 0px 4px 2px #00000040;
+  height: 153px;
+  position: absolute;
+  z-index: auto;
+  top: 95px;
+  width: 80px;
+}
+
+body{
+  background-color: #F0F3FA;
+}
