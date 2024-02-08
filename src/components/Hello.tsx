@@ -12,9 +12,10 @@ export default function Hello() {
       return await getUser();
     }
     fetchUser().then((user: User | undefined) => {
+      console.log(user);
+      window.localStorage.setItem("user", JSON.stringify(user));
       return setUser(user || ({} as User));
     });
-    console.log(user);
   }, []);
   return (
     <div>
