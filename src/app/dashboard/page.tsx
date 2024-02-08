@@ -1,7 +1,8 @@
 import React from "react";
+import Image from "next/image";
 
 const page = () => {
-  return <div className="flex justify-center items-center h-screen">helo</div>;
+  return <div>hello</div>;
 };
 
 export default page;
