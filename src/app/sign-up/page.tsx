@@ -17,6 +17,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import * as React from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
+import Image from "next/image";
+
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -42,6 +51,8 @@ const formSchema = z.object({
 export default function SignUp() {
   const router = useRouter();
   const { toast } = useToast();
+
+  const [slideView, setSlideView] = useState(true);
 
   const [error, setError] = useState(null);
   const [load, setLoad] = useState(false);
@@ -74,77 +85,149 @@ export default function SignUp() {
     }
   }
 
+  const [api, setApi] = React.useState<CarouselApi>();
+  const [current, setCurrent] = React.useState(0);
+  const [count, setCount] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
+
   return (
-    <div className="flex justify-center w-full items-center min-h-screen">
-      <div>
-        <Card className="w-[350px]">
-          <CardHeader>
-            <CardTitle>Sign Up</CardTitle>
-            <CardDescription>Create an account to get started.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-1"
-              >
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Email" {...field} />
-                      </FormControl>
-                      <FormDescription>Enter your email.</FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+    <>
+      {current == 4 ? (
+        <div className="flex justify-center w-full items-center min-h-screen">
+          <div>
+            <Card className="w-[350px]">
+              <CardHeader>
+                <CardTitle className="text-[#395886]">Create Account</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Form {...form}>
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-1"
+                  >
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Email</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Email" {...field} />
+                          </FormControl>
+                          <FormDescription>Enter your email.</FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Password" {...field} />
-                      </FormControl>
-                      <FormDescription>Enter your password.</FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                    <FormField
+                      control={form.control}
+                      name="password"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Password</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Password" {...field} />
+                          </FormControl>
+                          <FormDescription>
+                            Enter your password.
+                          </FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Name" {...field} />
-                      </FormControl>
-                      <FormDescription>Enter your Name.</FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                {load ? (
-                  <Button disabled>
-                    <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
-                    Please wait
-                  </Button>
-                ) : (
-                  <Button type="submit">Sign Up</Button>
-                )}
-              </form>
-            </Form>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Name</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Name" {...field} />
+                          </FormControl>
+                          <FormDescription>Enter your Name.</FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    {load ? (
+                      <Button disabled>
+                        <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                        Please wait
+                      </Button>
+                    ) : (
+                      <Button type="submit">Sign Up</Button>
+                    )}
+                  </form>
+                </Form>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      ) : (
+        <div className="flex flex-col justify-center items-center h-screen">
+          <Carousel setApi={setApi} className="w-full max-w-xs">
+            <CarouselContent>
+              {Array.from({ length: 4 }).map((_, index) => (
+                <CarouselItem key={index}>
+                  <Card>
+                    <CardContent className="flex aspect-square items-center justify-center p-6">
+                      <Image
+                        src={`/${index + 1}.png`}
+                        alt={`Slide ${index + 1}`}
+                        width={300}
+                        height={300}
+                      />
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+          <div className="py-2 text-center text-[#395886]">
+            {current == 1 ? (
+              <div className="w-full max-w-xs">
+                <div className="text-xl font-semibold">Clean and Fit</div>
+                <div className="text-sm mt-6">
+                  Verdant is an AI tool whose prime focus is to help you get
+                  fit. The catch is that you will solve Global Warming too.
+                </div>
+              </div>
+            ) : current == 2 ? (
+              <div className="w-full max-w-xs">
+                <div className="text-xl font-semibold">Task Fit</div>
+                <div className="text-sm mt-6">
+                  You do not have to worry about time management anymore because
+                  Veradnt will do that for you. It will guide you to help
+                  complete your tasks and also get optimal while you are at it.
+                </div>
+              </div>
+            ) : (
+              <div className="w-full max-w-xs">
+                <div className="text-xl font-semibold">
+                  Contribute and Socialise
+                </div>
+                <div className="text-sm mt-6">
+                  Connect with friends or join a community you love.
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 }
