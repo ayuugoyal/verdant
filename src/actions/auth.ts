@@ -62,7 +62,8 @@ export async function login(data: { email: string, password: string }) {
             ).limit(1);
 
         if (result.length == 0) {
-            throw 'Incorrect Username and password';
+            console.log('Incorrect Username and password');
+            throw "Incorrect Username and password";
         }
 
         const user = result[0];

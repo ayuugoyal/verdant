@@ -4,6 +4,7 @@ import Image from "next/image";
 import Dropwdown from "@/components/Dropdown";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import Radio from "@/components/Radio";
 
 const Main = () => {
   const [selected, setSelected] = React.useState("");
@@ -71,6 +72,9 @@ const Main = () => {
           <h1 className="text-2xl text-center mt-8 font-bold">
             What’s your Hustle?
           </h1>
+          <div className="w-54">
+            <Radio />
+          </div>
         </>
       )}
       <div className="flex gap-4 mt-5">

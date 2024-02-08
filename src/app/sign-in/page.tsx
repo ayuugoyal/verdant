@@ -59,6 +59,7 @@ export default function SignIn() {
       console.log(res);
       router.push("/dashboard");
     } catch (e: any) {
+      console.log("he;;");
       console.log(e);
       setLoad(false);
       setError(e.message);
