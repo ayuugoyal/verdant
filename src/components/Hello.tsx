@@ -1,8 +1,21 @@
+"use client";
 import Image from "next/image";
 import { getUser } from "@/actions/auth";
+import { useEffect } from "react";
+import { User } from "@/db/schema";
+import { useState } from "react";
 
-export default async function Hello() {
-  const user = await getUser();
+export default function Hello() {
+  const [user, setUser] = useState<User>({} as User);
+  useEffect(() => {
+    async function fetchUser() {
+      return await getUser();
+    }
+    fetchUser().then((user: User | undefined) => {
+      return setUser(user || ({} as User));
+    });
+    console.log(user);
+  }, []);
   return (
     <div>
       <div className="flex flex-col justify-center items-center h-screen gap-4">
@@ -13,7 +26,7 @@ export default async function Hello() {
           height={200}
           width={200}
         />
-        <div>Hello! {user?.name}</div>
+        <div>Hello! {user.name}</div>
       </div>
     </div>
   );
