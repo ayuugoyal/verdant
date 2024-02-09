@@ -3,6 +3,8 @@ import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 import { Fragment, useState } from "react";
 import { Button } from "./ui/button";
+import { TiTick } from "react-icons/ti";
+import { ImCross } from "react-icons/im";
 
 export default function Popup({
   name,
@@ -87,20 +89,16 @@ export default function Popup({
                     {date} {time}
                   </div>
 
-                  <div className="mt-4 flex justify-around">
-                    <Button
-                      type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                  <div className="mt-4 flex justify-around items-center">
+                    <TiTick
+                      className="w-20 h-20 text-green-500"
                       onClick={closeModal}
-                    >
-                      Got it, thanks!
-                    </Button>
-                    <Button
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    />
+
+                    <ImCross
+                      className="w-12 h-12 text-red-700"
                       onClick={closeModal}
-                    >
-                      Cancel
-                    </Button>
+                    />
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

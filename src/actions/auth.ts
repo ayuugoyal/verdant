@@ -158,6 +158,8 @@ IMPORTANT:
     3. Date Should be current date or future date.
     4. Year Should be 2024.
     5. Month Should be February.
+    6. Spread the events over the current week.
+    7. generate at least 15 events.
 
 `;
     const completion = await openai.chat.completions.create({

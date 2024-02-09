@@ -4,16 +4,16 @@ import { RadioGroup } from "@headlessui/react";
 
 const plans = [
   {
-    name: "Startup",
+    name: "Sedentary",
   },
   {
-    name: "Business",
+    name: "Lightly Active",
   },
   {
-    name: "Enterprise",
+    name: "Moderately Active",
   },
   {
-    name: "Enterprise",
+    name: "Highly Active",
   },
 ];
 
@@ -37,7 +37,7 @@ export default function Radio({ onChange }: { onChange: (item: any) => void }) {
                       : ""
                   }
                   ${checked ? "bg-sky-900/75 text-white" : "bg-white"}
-                    relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
+                    relative flex w-56 cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
                 }
                 onClick={() => onChange(plan.name)}
               >

@@ -1,3 +1,5 @@
+import { IoHome } from "react-icons/io5";
+
 const Footer = () => {
   return (
     <div className="flex fixed bottom-0 w-full z-10 bg-[#B1C9EF] text-black h-16 items-center justify-around shadow-[rgba(0,0,0,0.35)_0px_5px_15px,rgba(27,133,219,0.5)_5px_10px_15px] rounded-top-[10px]">
@@ -15,24 +17,8 @@ const Footer = () => {
           <path d="M946.5 505L560.1 118.8l-25.9-25.9a31.5 31.5 0 0 0-44.4 0L77.5 505a63.9 63.9 0 0 0-18.8 46c.4 35.2 29.7 63.3 64.9 63.3h42.5V940h691.8V614.3h43.4c17.1 0 33.2-6.7 45.3-18.8a63.6 63.6 0 0 0 18.7-45.3c0-17-6.7-33.1-18.8-45.2zM568 868H456V664h112v204zm217.9-325.7V868H632V640c0-22.1-17.9-40-40-40H432c-22.1 0-40 17.9-40 40v228H238.1V542.3h-96l370-369.7 23.1 23.1L882 542.3h-96.1z" />
         </svg>
       </button>
-      <button className="w-10 h-10 bg-transparent flex items-center justify-center  transition-all duration-[ease-in-out] delay-[0.3s] cursor-pointer rounded-[50%] border-0 hover:translate-y-[-3px]">
-        <svg
-          className="text-xl"
-          stroke="currentColor"
-          fill="none"
-          strokeWidth={2}
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          height="1em"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-          />
-        </svg>
+      <button className="bg-transparent flex items-center justify-center  transition-all duration-[ease-in-out] delay-[0.3s] cursor-pointer rounded-[50%] border-0 hover:translate-y-[-3px]">
+        <IoHome width={15} height={15} />
       </button>
       <button className="w-10 h-10 bg-transparent flex items-center justify-center  transition-all duration-[ease-in-out] delay-[0.3s] cursor-pointer rounded-[50%] border-0 hover:translate-y-[-3px]">
         <svg
