@@ -129,30 +129,10 @@ export default function Page() {
               />
             </>
           )}
-          {/* {currentQues === 2 && (
-            <>
-              <h1 className="text-2xl text-center mt-8 font-bold">Days off?</h1>
-
-              {days.map((day, index) => (
-                <Button
-                  className="flex items-center space-x-2 w-44 mt-6 bg-[#395886]"
-                  key={index}
-                >
-                  <Checkbox id={day.name} />
-                  <label
-                    htmlFor={day.name}
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    {day.name}
-                  </label>
-                </Button>
-              ))}
-            </>
-          )} */}
-          {currentQues === 3 && (
+          {currentQues === 2 && (
             <>
               <h1 className="text-2xl text-center mt-8 font-bold">
-                What’s your Hustle?
+                How active are you?
               </h1>
               <div className="w-54">
                 <Radio onChange={(item) => setItem(item)} />
@@ -170,7 +150,7 @@ export default function Page() {
                 Prev
               </Button>
             )}
-            {currentQues != 3 && (
+            {currentQues != 2 && (
               <Button
                 onClick={() => {
                   setCurrentQues((prev) => prev + 1);
@@ -180,7 +160,7 @@ export default function Page() {
                 Next
               </Button>
             )}
-            {currentQues === 3 && (
+            {currentQues === 2 && (
               <Button
                 onClick={handleSubmit}
                 className="mt-4 bg-[#395886] text-white px-4 py-2"

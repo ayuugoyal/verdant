@@ -132,7 +132,6 @@ export async function add_questions(data: Question) {
       .values(data)
       .returning()
       .then((res) => res[0]);
-
     const gbtcontentdata = `
 "Prepare and submit your fitness event information using the provided JSON structure. Each event should include a numeric ID, a title reflecting the event's name incorporating a specific example of a physical exercise, and a start date in the given format. Ensure the output is in JSON format, adhering strictly to the specified structure without additional commentary."
 Here's the structure example incorporating your requirements, including example names in the titles:
