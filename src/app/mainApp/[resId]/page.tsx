@@ -1,26 +1,18 @@
 "use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { OpenAiResponse, User } from "@/db/schema";
+import { User } from "@/db/schema";
 import Image from "next/image";
-import DemoApp from "@/components/Calender";
 import Popup from "@/components/Popup";
 import { getUser } from "@/actions/auth";
 import React from "react";
 import { useEffect, useState } from "react";
-import {
-  EventApi,
-  DateSelectArg,
-  EventClickArg,
-  EventContentArg,
-  formatDate,
-} from "@fullcalendar/core";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { INITIAL_EVENTS, createEventId } from "@/lib/event";
 import { get_events } from "@/actions/auth";
 import { useToast } from "@/components/ui/use-toast";
+import Footer from "@/components/Footer";
 
 const detailsToShow = [
   {
@@ -152,6 +144,7 @@ export default function Page({ params }: { params: { resId: string } }) {
           ))}
         </div>
       </div>
+      <Footer resId={params.resId} />
     </div>
   );
 }
