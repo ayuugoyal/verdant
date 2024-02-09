@@ -20,6 +20,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { INITIAL_EVENTS, createEventId } from "@/lib/event";
 import { get_events } from "@/actions/auth";
+import { useToast } from "@/components/ui/use-toast";
 
 const detailsToShow = [
   {
@@ -57,6 +58,8 @@ const detailsToShow = [
 export default function Page({ params }: { params: { resId: string } }) {
   const [userDetails, setUserDetails] = useState<User | null>(null);
   const [eventDetails, setEventDetails] = useState<Object[]>([]);
+  const { toast } = useToast();
+
   useEffect(() => {
     const fetchUserData = async () => {
       const userData = await getUser();
@@ -65,9 +68,17 @@ export default function Page({ params }: { params: { resId: string } }) {
     fetchUserData();
 
     const getResponse = async () => {
-      const data: Object[] = (await get_events(params.resId)) as Object[];
-      console.log(data);
-      setEventDetails(data);
+      try {
+        const data: Object[] = (await get_events(params.resId)) as Object[];
+        console.log(data);
+        setEventDetails(data);
+      } catch (error: unknown) {
+        toast({
+          variant: "destructive",
+          title: "Log in Failed",
+          description: (error as Error).message,
+        });
+      }
     };
     getResponse();
   }, []);

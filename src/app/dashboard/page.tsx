@@ -4,7 +4,7 @@ import { Question, User } from "@/db/schema";
 import { add_questions, getUser } from "@/actions/auth";
 import Dropwdown from "@/components/Dropdown";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+import { useToast } from "@/components/ui/use-toast";
 import Radio from "@/components/Radio";
 import Image from "next/image";
 import Loading from "@/app/loading";
@@ -34,6 +34,7 @@ export default function Page() {
     { id: 7, name: "Sunday" },
   ];
 
+  const { toast } = useToast();
   useEffect(() => {
     const fetchUserData = async () => {
       const userData = await getUser();
@@ -51,18 +52,28 @@ export default function Page() {
   }, []);
 
   const handleSubmit = async () => {
-    setLoadings(false);
-    const data = {
-      user_id: user?.id,
-      question1: selected,
-      question2: time,
-      question3: userDays,
-      question4: item,
-    };
+    try {
+      setLoadings(false);
+      const data = {
+        user_id: user?.id,
+        question1: selected,
+        question2: time,
+        question3: userDays,
+        question4: item,
+      };
 
-    const addQues = await add_questions(data as unknown as Question);
-    console.log(addQues);
-    window.location.href = `/mainApp/${addQues.id}`;
+      const addQues = await add_questions(data as unknown as Question);
+      console.log(addQues);
+      window.location.href = `/mainApp/${addQues.id}`;
+    } catch (e) {
+      console.log("he;;");
+      console.log(e);
+      setLoadings(true);
+      toast({
+        variant: "destructive",
+        title: "API Expired",
+      });
+    }
   };
 
   console.log(selected, item, time, currentQues);

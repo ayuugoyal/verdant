@@ -62,8 +62,8 @@ export default function Popup({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl text-[#395886] bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <div className="flex justify-center w-full">
+                <Dialog.Panel className=" transform overflow-hidden rounded-2xl text-[#395886] bg-white p-6 text-left align-middle shadow-xl transition-all">
+                  <div className="flex justify-center">
                     <Image
                       src={`/${image}.png`}
                       alt="logo"

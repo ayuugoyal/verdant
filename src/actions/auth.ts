@@ -182,7 +182,7 @@ IMPORTANT:
       console.log(addResponse.response);
       return addResponse;
     } else {
-      throw new Error("No response from GPT-3");
+      throw "No response from GPT-3";
     }
   } catch (e: any) {
     console.log(e);
@@ -197,6 +197,10 @@ export async function get_events(id: string) {
       .from(open_ai_responses)
       .where(eq(open_ai_responses.id, id))
       .limit(1);
+
+    if (res.length == 0) {
+      throw "No response found";
+    }
 
     return res[0].response;
   } catch (e: any) {
