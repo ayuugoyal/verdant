@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Verdant: Connecting People to Nature for Better Well-being
 
-## Getting Started
+## Overview
 
-First, run the development server:
+In today's fast-paced world, where loneliness and environmental degradation are prevalent issues, Verdant offers a solution by connecting individuals to nature through tailored group activities and events. According to the 2015 NHMS survey, one in every 20 Indians has suffered from depressive disorders, highlighting the pressing need for interventions like Verdant.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Environmental Concerns
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Over 60% of India's arable land is facing environmental degradation due to an increasing population. Verdant acknowledges this crisis and aims to address it by promoting "Green Activities" that not only enhance societal well-being but also contribute to environmental preservation.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Psychological Well-being
 
-## Learn More
+Verdant prioritizes psychological well-being by facilitating activities that reconnect individuals with nature. Through a reward system, users are encouraged to participate in activities that benefit both themselves and the environment.
 
-To learn more about Next.js, take a look at the following resources:
+### AI Planning
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Verdant utilizes Artificial Intelligence (AI) to personalize event planning. From community yoga sessions to cleanliness drives, AI tailors recommendations to fit users' preferences, making participation seamless and enjoyable.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Community Engagement
 
-## Deploy on Vercel
+Verdant fosters community engagement by offering various group activities, support groups, and volunteer opportunities. Whether organizing a church meeting or a children-only event, Verdant provides avenues for meaningful connections.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Market Analysis
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Market statistics indicate a growing demand for well-being fitness apps like Verdant. With consistent year-over-year growth and an expanding consumer base interested in psychological well-being, Verdant is poised for success in the market.
+
+### Revenue Generation
+
+To bring Verdant to market, we employ various strategies:
+
+- **Social Media Advertising:** Leveraging social media platforms to reach our target audience.
+- **Partnerships:** Collaborating with healthcare and wellness industry professionals for business promotion.
+- **Local Advertising:** Partnering with local vendors for product promotion.
+- **Event Participation Fees:** Requiring a participation fee for events to generate revenue.
+- **Sponsorships:** Securing sponsorships from businesses for mutual benefit.
+
+## Inspiration
+
+Our team draws inspiration from local initiatives like the Dwarka Runners Marathon Group, which organizes events through participation fees and sponsorships. By observing successful models like this, we aim to create impactful experiences for our users.
+
+## About Us
+
+Verdant is founded on the belief that reconnecting with nature is essential for holistic well-being. From New Delhi, India, our team is committed to fostering a healthier and more connected society.
