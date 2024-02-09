@@ -1,9 +1,17 @@
 "use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { User } from "@/db/schema";
+import { OpenAiResponse, User } from "@/db/schema";
 import Image from "next/image";
-import DemoApp from "@/components/Calender";
 import Popup from "@/components/Popup";
+// import { testApi } from "@/actions/questions";
+import { useEffect, useState } from "react";
+import { get_questions } from "@/actions/questions";
+import React from "react";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import { INITIAL_EVENTS, createEventId } from "@/lib/event";
 
 const eventDetails = [
   {
@@ -38,11 +46,27 @@ const eventDetails = [
   },
 ];
 
-const page = () => {
+const Page = ({ params }: { params: { quesId: string } }) => {
+  const [initialEvents, setInitialEvents] = useState([]);
+
   const userDetails: User =
     typeof window !== "undefined"
       ? JSON.parse(localStorage.getItem("user") || "{}")
       : {};
+
+  useEffect(() => {
+    const apiData = async () => {
+      console.log("is", params.quesId);
+      const res: OpenAiResponse = (await get_questions(
+        params.quesId
+      )) as OpenAiResponse;
+      console.log(res);
+      setInitialEvents(res.response as any);
+    };
+    apiData();
+  }, []);
+
+  console.log("initialEvents", initialEvents);
   return (
     <div>
       <div className="flex justify-between mt-7 items-center mr-4">
@@ -66,7 +90,31 @@ const page = () => {
           Your Schedule
         </h2>
         <div className="mx-6 pt-10">
-          <DemoApp />
+          <FullCalendar
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            headerToolbar={{
+              left: "prev,next today",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek,timeGridDay",
+            }}
+            initialView="timeGridDay"
+            editable={true}
+            selectable={true}
+            selectMirror={true}
+            dayMaxEvents={true}
+            // weekends={this.state.weekendsVisible}
+            initialEvents={initialEvents} // alternatively, use the `events` setting to fetch from a feed
+            // select={this.handleDateSelect}
+            // eventContent={renderEventContent} // custom render function
+            // eventClick={this.handleEventClick}
+            // eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
+            /* you can update a remote database when these fire:
+            eventAdd={function(){}}
+            eventChange={function(){}}
+            eventRemove={function(){}}
+            
+            */
+          />{" "}
         </div>
       </div>
       <div className="m-6 pb-24">
@@ -90,4 +138,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

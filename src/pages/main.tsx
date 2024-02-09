@@ -5,22 +5,23 @@ import Dropwdown from "@/components/Dropdown";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import Radio from "@/components/Radio";
-
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import { OpenAiResponse, Question, User } from "@/db/schema";
+import { add_questions } from "@/actions/questions";
 
 const Main = () => {
   const [ans1, setAns1] = React.useState<string>("");
   const [ans2, setAns2] = React.useState<string>("");
   const [ans3, setAns3] = React.useState<string[]>([]);
-  const [ans4, setAns4] = React.useState<string>("");
+  const [ans4, setAns4] = React.useState({ name: "" });
   const [currentQues, setCurrentQues] = React.useState(0);
 
-  const form = useForm({
-    defaultValues: {
-      tech_stacks: [],
-    },
-  });
+  const userDetails: User =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("user") || "{}")
+      : {};
+
   const days = [
     { id: 1, name: "Monday" },
     { id: 2, name: "Tuesday" },
@@ -31,7 +32,28 @@ const Main = () => {
     { id: 7, name: "Sunday" },
   ];
 
-  console.log(ans1, ans2, ans3, ans4);
+  const handleclick = async () => {
+    try {
+      const finalprop = {
+        user_id: userDetails.id,
+        question1: ans1,
+        question2: ans2,
+        question3: JSON.stringify(ans3),
+        question4: ans4?.name,
+      };
+      console.log(finalprop);
+      const feedQuestion: OpenAiResponse = await add_questions(
+        finalprop as Question
+      );
+      console.log(feedQuestion);
+      if (feedQuestion) {
+        window.localStorage.setItem("question", JSON.stringify(feedQuestion));
+        window.location.href = `/mainApp/${feedQuestion.id}`;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div
       className="flex flex-col justify-center items-center h-screen text-[#395886]"
@@ -64,7 +86,7 @@ const Main = () => {
           />
         </>
       )}
-      {currentQues === 2 && (
+      {/* {currentQues === 2 && (
         <>
           <h1 className="text-2xl text-center mt-8 font-bold">Days off?</h1>
           {days.map((item, index) => (
@@ -86,7 +108,7 @@ const Main = () => {
             </div>
           ))}
         </>
-      )}
+      )} */}
       {currentQues === 3 && (
         <>
           <h1 className="text-2xl text-center mt-8 font-bold">
@@ -124,11 +146,12 @@ const Main = () => {
           </Button>
         )}
         {currentQues === 3 && (
-          <Link href="/mainApp">
-            <Button className="mt-4 bg-[#395886] text-white px-4 py-2">
-              Generate Schedule
-            </Button>
-          </Link>
+          <Button
+            className="mt-4 bg-[#395886] text-white px-4 py-2"
+            onClick={handleclick}
+          >
+            Generate Schedule
+          </Button>
         )}
       </div>
     </div>
