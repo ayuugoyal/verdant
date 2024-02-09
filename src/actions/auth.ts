@@ -133,44 +133,26 @@ export async function add_questions(data: Question) {
       .returning()
       .then((res) => res[0]);
 
-    const gbtcontentdata = `1. What's your hustle - profession?
-2. What's your moment to be break free? (Specify the time of day)
-3. Days of the week you're available for exercise? (e.g., Mon, Tue, etc.)
-4. How active are you? (sedentary, low, moderate, high)
+    const gbtcontentdata = `
+    Prepare and submit your fitness event information using the provided JSON structure. Each event should include a numeric ID, a title reflecting the event's name incorporating a specific example of a physical exercise, and a start date in the given format. Ensure the output is in JSON format, adhering strictly to the specified structure without additional commentary."
 
-User: ${getQuestions.question1}
-User: ${getQuestions.question2}
-User: ["monday", "tuesday", "wednesday"]
-User: ${getQuestions.question4}
+Here's the structure example incorporating your requirements, including example names in the titles:
 
-Please generate the events on today and tomorrow according to the user's input. and return the INITIAL_EVENTS array.
 
-type of the INITIAL_EVENTS is [
+[
   {
-    id: createEventId(),
-    title: 'All-day event',
-    start: todayStr
+    "id": 1,
+    "title": "Morning Yoga Retreat",
+    "start": "2024-02-09"
   },
   {
-    id: createEventId(),
-    title: 'Timed event',
-    start: new Date().toISOString().replace(/T.*$/, '') + 'T12:00:00'
+    "id": 2,
+    "title": "Afternoon Strength Training Workshop",
+    "start": "2024-02-09T12:00:00"
   }
 ]
 
-createEventId() function returns the string of the event id. It should be unique.
-
-todayStr is the current date in the format of YYYY-MM-DD and should be today's date or tommorrow's ONLY.
-
-The title of the event should be according to the user's input.
-
-i have given an expample of the INITIAL_EVENTS array. You can return the array according to the user's input.
-
-id always should be unique. You can use the createEventId() function to generate the id.
-
-give me ONLY the INITIAL_EVENTS array of the events in JSON format.
-
-
+IMPORTANT: Give ONLY the JSON structure, without additional commentary.
 `;
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
