@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/db";
-import { User, users } from "@/db/schema";
+import { OpenAiResponse, User, users } from "@/db/schema";
 import { encode, decode } from "jwt-simple";
 import { cookies } from "next/headers";
 import crypto from "crypto";
@@ -152,7 +152,13 @@ Here's the structure example incorporating your requirements, including example 
   }
 ]
 
-IMPORTANT: Give ONLY the JSON structure, without additional commentary.
+IMPORTANT:
+    1. Give ONLY the JSON structure, without additional commentary.
+    2. Dates should be in the format "YYYY-MM-DD" or "YYYY-MM-DDTHH:MM:SS".
+    3. Date Should be current date or future date.
+    4. Year Should be 2024.
+    5. Month Should be February.
+
 `;
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
@@ -178,6 +184,21 @@ IMPORTANT: Give ONLY the JSON structure, without additional commentary.
     } else {
       throw new Error("No response from GPT-3");
     }
+  } catch (e: any) {
+    console.log(e);
+    throw e;
+  }
+}
+
+export async function get_events(id: string) {
+  try {
+    const res: OpenAiResponse[] = await db
+      .select()
+      .from(open_ai_responses)
+      .where(eq(open_ai_responses.id, id))
+      .limit(1);
+
+    return res[0].response;
   } catch (e: any) {
     console.log(e);
     throw e;

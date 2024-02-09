@@ -62,7 +62,7 @@ export default function Page() {
 
     const addQues = await add_questions(data as unknown as Question);
     console.log(addQues);
-    setLoadings(true);
+    window.location.href = `/mainApp/${addQues.id}`;
   };
 
   console.log(selected, item, time, currentQues);
