@@ -1,15 +1,8 @@
 "use server";
 
-import {
-  OpenAiResponse,
-  Question,
-  open_ai_responses,
-  questions,
-} from "@/db/schema";
-import { NextResponse } from "next/server";
+import { Question, open_ai_responses, questions } from "@/db/schema";
 import OpenAI from "openai";
 import { db } from "../db";
-import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
 const openai = new OpenAI({

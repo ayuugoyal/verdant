@@ -114,7 +114,7 @@ const Page = ({ params }: { params: { quesId: string } }) => {
             eventRemove={function(){}}
             
             */
-          />{" "}
+          />
         </div>
       </div>
       <div className="m-6 pb-24">
