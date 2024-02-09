@@ -49,10 +49,10 @@ const eventDetails = [
 const Page = ({ params }: { params: { quesId: string } }) => {
   const [initialEvents, setInitialEvents] = useState([]);
 
-  const userDetails: User =
-    typeof window !== "undefined"
-      ? JSON.parse(localStorage.getItem("user") || "{}")
-      : {};
+  // const userDetails: User =
+  //   typeof window !== "undefined"
+  //     ? JSON.parse(localStorage.getItem("user") || "{}")
+  //     : {};
 
   useEffect(() => {
     const apiData = async () => {
@@ -81,7 +81,7 @@ const Page = ({ params }: { params: { quesId: string } }) => {
         <Avatar>
           <AvatarImage alt="Mentor" src="/placeholder-avatar.jpg" />
           <AvatarFallback className="bg-[#395886] text-white">
-            {(userDetails as User)?.name?.charAt(0).toUpperCase()}
+            {/* {(userDetails as User)?.name?.charAt(0).toUpperCase()} */}
           </AvatarFallback>
         </Avatar>
       </div>
