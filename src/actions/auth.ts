@@ -151,9 +151,7 @@ Here's the structure example incorporating your requirements, including example 
 IMPORTANT:
     1. Dates should be in the format "YYYY-MM-DD" or "YYYY-MM-DDTHH:MM:SS".
     2. Date Should be current date or future date and Year Should be 2024 and Month Should be February.
-    3. Spread the events over the current week.
-    4. generate at least 3 events.
-
+    3. generate at least 3 events and Spread the events over the current week.
 `;
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
