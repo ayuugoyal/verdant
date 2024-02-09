@@ -134,11 +134,8 @@ export async function add_questions(data: Question) {
       .then((res) => res[0]);
 
     const gbtcontentdata = `
-    Prepare and submit your fitness event information using the provided JSON structure. Each event should include a numeric ID, a title reflecting the event's name incorporating a specific example of a physical exercise, and a start date in the given format. Ensure the output is in JSON format, adhering strictly to the specified structure without additional commentary."
-
+"Prepare and submit your fitness event information using the provided JSON structure. Each event should include a numeric ID, a title reflecting the event's name incorporating a specific example of a physical exercise, and a start date in the given format. Ensure the output is in JSON format, adhering strictly to the specified structure without additional commentary."
 Here's the structure example incorporating your requirements, including example names in the titles:
-
-
 [
   {
     "id": 1,
@@ -151,15 +148,11 @@ Here's the structure example incorporating your requirements, including example 
     "start": "2024-02-09T12:00:00"
   }
 ]
-
 IMPORTANT:
-    1. Give ONLY the JSON structure, without additional commentary.
-    2. Dates should be in the format "YYYY-MM-DD" or "YYYY-MM-DDTHH:MM:SS".
-    3. Date Should be current date or future date.
-    4. Year Should be 2024.
-    5. Month Should be February.
-    6. Spread the events over the current week.
-    7. generate at least 5 events.
+    1. Dates should be in the format "YYYY-MM-DD" or "YYYY-MM-DDTHH:MM:SS".
+    2. Date Should be current date or future date and Year Should be 2024 and Month Should be February.
+    3. Spread the events over the current week.
+    4. generate at least 3 events.
 
 `;
     const completion = await openai.chat.completions.create({
