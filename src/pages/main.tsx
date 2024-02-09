@@ -5,8 +5,6 @@ import Dropwdown from "@/components/Dropdown";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import Radio from "@/components/Radio";
-import { useForm } from "react-hook-form";
-import Link from "next/link";
 import { OpenAiResponse, Question, User } from "@/db/schema";
 import { add_questions } from "@/actions/questions";
 
