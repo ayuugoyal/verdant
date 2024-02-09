@@ -8,6 +8,36 @@ In today's fast-paced world, where loneliness and environmental degradation are 
 
 Over 60% of India's arable land is facing environmental degradation due to an increasing population. Verdant acknowledges this crisis and aims to address it by promoting "Green Activities" that not only enhance societal well-being but also contribute to environmental preservation.
 
+## Getting Started
+
+To run this project locally, you'll need to have Node.js and npm installed on your machine.
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/ayuugoyal/verdant.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd verdant
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   pnpm install
+   ```
+
+4. Run the development server:
+
+   ```bash
+   pnpm run dev
+   ```
+
+   Open [http://localhost:3000](http://localhost:3000) in your browser to see the terminal application.
+
 ## Features
 
 ### Psychological Well-being
@@ -36,10 +66,8 @@ To bring Verdant to market, we employ various strategies:
 - **Event Participation Fees:** Requiring a participation fee for events to generate revenue.
 - **Sponsorships:** Securing sponsorships from businesses for mutual benefit.
 
-## Inspiration
+## License
 
-Our team draws inspiration from local initiatives like the Dwarka Runners Marathon Group, which organizes events through participation fees and sponsorships. By observing successful models like this, we aim to create impactful experiences for our users.
+This project is licensed under the [MIT License](LICENSE). Feel free to explore, contribute, and provide feedback!
 
-## About Us
-
-Verdant is founded on the belief that reconnecting with nature is essential for holistic well-being. From New Delhi, India, our team is committed to fostering a healthier and more connected society.
+Explore verdant [here](https://github.com/ayuugoyal/verdant) and embark on a journey of simplified legal interactions!
